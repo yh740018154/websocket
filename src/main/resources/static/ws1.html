@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>导出测试</title>
+    <title>Spring Boot+WebSocket+广播式111111</title>
 
 </head>
 <body onload="disconnect()">
@@ -13,8 +13,10 @@
         <button id="disconnect" disabled="disabled" onclick="disconnect();">断开连接</button>
         <button id="export" onclick="export1();">导出</button>
 
-        <div id="exportResult" style="width: 100px;height:100px; background-color:#ff6633;"></div>
+        <!--<div id="exportResult" style="width: 100px;height:100px; background-color:#ff6633;"></div>-->
     </div>
+
+
     <div id="conversationDiv">
         <label>用户id</label><input type="text" id="sid" />
         <label>车牌号</label> <input type="text" id="plateNumber" />
@@ -35,35 +37,84 @@
         $('#response').html();
     }
 
-    var users=[];
-    var areas=["22121212121211222323232","22121212121211222323233","22121212121211222323234"];
 
-    for (var i = 0; i < 12; i++) {
-        var user = {
-            startTime:'2019-12-13 12:23:00 3333',
-            endTime:'2019-12-14 12:23:00 3333',
-            areas:areas
+    var exportParams = [{
+        "startTime": "2019-12-13 12:23:00 3333",
+        "endTime": "2019-12-14 12:23:00 3333",
+        "areas": ["22121212121211222323232", "22121212121211222323232"]
+    },
+        {
+            "startTime": "2019-12-13 12:23:00 3333",
+            "endTime": "2019-12-14 12:23:00 3333",
+            "areas": ["22121212121211222323232", "22121212121211222323232"]
+        },
+        {
+            "startTime": "2019-12-13 12:23:00 3333",
+            "endTime": "2019-12-14 12:23:00 3333",
+            "areas": ["22121212121211222323232", "22121212121211222323232"]
+        },
+        {
+            "startTime": "2019-12-13 12:23:00 3333",
+            "endTime": "2019-12-14 12:23:00 3333",
+            "areas": ["22121212121211222323232", "22121212121211222323232"]
+        },
+        {
+            "startTime": "2019-12-13 12:23:00 3333",
+            "endTime": "2019-12-14 12:23:00 3333",
+            "areas": ["22121212121211222323232", "22121212121211222323232"]
+        },
+        {
+            "startTime": "2019-12-13 12:23:00 3333",
+            "endTime": "2019-12-14 12:23:00 3333",
+            "areas": ["22121212121211222323232", "22121212121211222323232"]
+        },{
+            "startTime": "2019-12-13 12:23:00 3333",
+            "endTime": "2019-12-14 12:23:00 3333",
+            "areas": ["22121212121211222323232", "22121212121211222323232"]
+        },
+        {
+            "startTime": "2019-12-13 12:23:00 3333",
+            "endTime": "2019-12-14 12:23:00 3333",
+            "areas": ["22121212121211222323232", "22121212121211222323232"]
+        },
+        {
+            "startTime": "2019-12-13 12:23:00 3333",
+            "endTime": "2019-12-14 12:23:00 3333",
+            "areas": ["22121212121211222323232", "22121212121211222323232"]
+        },
+        {
+            "startTime": "2019-12-13 12:23:00 3333",
+            "endTime": "2019-12-14 12:23:00 3333",
+            "areas": ["22121212121211222323232", "22121212121211222323232"]
+        },
+        {
+            "startTime": "2019-12-13 12:23:00 3333",
+            "endTime": "2019-12-14 12:23:00 3333",
+            "areas": ["22121212121211222323232", "22121212121211222323232"]
+        },
+        {
+            "startTime": "2019-12-13 12:23:00 3333",
+            "endTime": "2019-12-14 12:23:00 3333",
+            "areas": ["22121212121211222323232", "22121212121211222323232"]
         }
-        users[i]=user;
-    }
+    ]
     function export1(){
-        window.location.href="http://localhost:8081/ExcelDownload";
-  /*      var userList = users;
         $.ajax({
             //几个参数需要注意一下
             type: "POST",//方法类型
             //dataType: "json",//预期服务器返回的数据类型
             url: "http://localhost:8081/ExcelDownload" ,//url
-            data: users,
+            data: exportParams,
             success: function (result) {
-                $("#exportResult").html("导出成功")
+               $("#exportResult").html("导出成功")
             },
             error : function(error) {
                 $("#exportResult").html("导出失败")
             }
-        });*/
+        });
 
     }
+
     function connect() {
         // 连接 SockJs 的 endpoint 名称为 "/endpointNasus"
         var socket = new SockJS('/endpointNasus');
